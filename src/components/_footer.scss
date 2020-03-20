@@ -1,0 +1,10 @@
+$bgcolor: rgb(39, 127, 179);
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: $bgcolor;
+    height: 80px;
+}

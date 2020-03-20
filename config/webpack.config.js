@@ -2,6 +2,7 @@ const path = require('path');
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     mode: 'development',
@@ -9,7 +10,7 @@ module.exports = {
         mainDev: './src/index.js'
     },
     output: {
-        filename: '[name][hash].js',
+        filename: 'js/[name]-[contenthash].js',
         path: path.resolve(__dirname, '../', 'build')
     },
     devServer: { // otwarcie odrazu w nowym oknie. Mozna również dodac --open w jsonie na koncu "start"
@@ -21,6 +22,10 @@ module.exports = {
             {
                 test: /\.txt$/,
                 use: "raw-loader"
+            },
+            {
+                test: /\.(scss|sass)$/,
+                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
             }
         ]
     },
@@ -28,7 +33,10 @@ module.exports = {
         new CleanWebpackPlugin(), // nowa instancja
         new HtmlWebpackPlugin({
             title: "nowa apka",
-            template: "src/template.html"
+            template: "src/templates/template.html"
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'css/[name]-[contenthash].css'
         })
     ]
 }
