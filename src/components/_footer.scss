@@ -4,7 +4,8 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: black;
-    color: $bgcolor;
+    background-color: $bgcolor;
+    color: black;
+    background-image: url('../images/photo.jpg');
     height: 80px;
 }
